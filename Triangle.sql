@@ -3,7 +3,6 @@ Write a query identifying the type of Triangle
 each record is in the TRIANGLES table using its 
 three side lengths. 
 ==================================================*/
-
 SELECT CASE 
     WHEN (A+B<=C) OR (C+B<=A) OR (A+C<=B) THEN 'Not A Triangle'
     WHEN A=B AND B=C THEN 'Equilateral'
