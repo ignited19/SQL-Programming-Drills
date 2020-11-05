@@ -1,0 +1,9 @@
+/*==================================================
+ * Using the STATION table, acquire a list of city
+ * names that DO NOT start with or end with a vowel.
+ * The result list should not contain duplicates
+ *================================================*/
+ SELECT DISTINCT City
+ FROM Station AS S WITH (NOLOCK)
+ WHERE LEFT(S.City,1) NOT IN ('A','E','I','O','U')
+ OR    RIGHT(S.City, 1) NOT IN ('A','E','I','O','U')
