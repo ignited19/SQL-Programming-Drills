@@ -17,3 +17,20 @@
 ==================================================================*/
 SELECT CAST((ABS(MIN(LAT_N) - MAX(LAT_N)) + ABS(MIN(LONG_W) - MAX(LONG_W))) AS NUMERIC(18,4))
 FROM Station AS S WITH (NOLOCK)
+
+
+/*=============================================
+* Find the overall median value of LAT_N
+* with 4 decimals places
+==============================================*/
+DECLARE @RowCount INT = (SELECT COUNT(*)
+                         FROM Station)
+                    
+DECLARE @MidElement INT = CEILING(@RowCount/2)
+
+
+SELECT CAST(S.LAT_N AS Decimal(10,4))
+FROM Station AS S WITH (NOLOCK)
+ORDER BY 1 ASC
+OFFSET     @MidElement ROWS       
+FETCH NEXT 1 ROWS ONLY
