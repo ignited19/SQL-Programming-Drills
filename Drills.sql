@@ -34,3 +34,25 @@ FROM Station AS S WITH (NOLOCK)
 ORDER BY 1 ASC
 OFFSET     @MidElement ROWS       
 FETCH NEXT 1 ROWS ONLY
+
+
+
+/*==============================================
+* Acquire the months total per id
+*==============================================*/
+SELECT 
+    id,
+    MAX(CASE WHEN Month = 'Jan' THEN Revenue END) AS Jan_Revenue,
+    MAX(CASE WHEN Month = 'Feb' THEN Revenue END) AS Feb_Revenue,
+    MAX(CASE WHEN Month = 'Mar' THEN Revenue END) AS Mar_Revenue,
+    MAX(CASE WHEN Month = 'Apr' THEN Revenue END) AS Apr_Revenue,
+    MAX(CASE WHEN Month = 'May' THEN Revenue END) AS May_Revenue,
+    MAX(CASE WHEN Month = 'Jun' THEN Revenue END) AS Jun_Revenue,
+    MAX(CASE WHEN Month = 'Jul' THEN Revenue END) AS Jul_Revenue,
+    MAX(CASE WHEN Month = 'Aug' THEN Revenue END) AS Aug_Revenue,
+    MAX(CASE WHEN Month = 'Sep' THEN Revenue END) AS Sep_Revenue,
+    MAX(CASE WHEN Month = 'Oct' THEN Revenue END) AS Oct_Revenue,
+    MAX(CASE WHEN Month = 'Nov' THEN Revenue END) AS Nov_Revenue,
+    MAX(CASE WHEN Month = 'Dec' THEN Revenue END) AS Dec_Revenue 
+FROM Department
+GROUP BY ID
